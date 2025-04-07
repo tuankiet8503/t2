@@ -19,16 +19,22 @@ router.get('/:id', async function(req, res, next) {
 });
 
 router.post('/saleadd', async function(req, res, next) {
-  let body = req.body;
-  console.log(body);
-  let newSale = new saleSchema({
-    saleName: body.saleName,
-    discount: body.discount,
-    startDate: body.startDate,
-    endDate: body.endDate
-  });
-  await newSale.save();
-  res.send(newSale);
+  try {
+    let body = req.body;
+    console.log(body);
+
+    // Tạo mới một sale
+    let newSale = new Sale({
+      saleName: body.saleName,
+      discount: body.discount,
+      startDate: body.startDate,
+      endDate: body.endDate
+    });
+    await newSale.save();
+    res.send(newSale);
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.put('/:id', async function(req, res, next) {

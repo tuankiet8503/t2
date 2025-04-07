@@ -1,0 +1,46 @@
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.sidebar li {
+  margin: 10px 0;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 5px 10px;
+}
+
+.sidebar li > a:hover {
+  background-color: #575757;
+}
+
+.sidebar li > ul {
+  padding-left: 20px;
+  display: none; /* Ẩn các menu con mặc định */
+}
+
+.sidebar li.open > ul {
+  display: block; /* Hiển thị menu con khi được mở */
+}
+
+.sidebar li > a::after {
+  content: ' ▼';
+}
+
+.sidebar li.open > a::after {
+  content: ' ▲';
+}

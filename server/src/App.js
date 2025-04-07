@@ -11,6 +11,13 @@ import LoginForm from './component/Users/loginForm';
 import RegisterForm from './component/Users/registerForm';
 import AddCategoryForm from './component/Categories/AddCategoryForm';
 import EditCategoryForm from './component/Categories/UpdateCategoryForm'; 
+import MenuList from './component/Menu/MenuList';
+import AddMenuForm from './component/Menu/AddMenu';
+import EditMenuForm from './component/Menu/EditMenu';
+import SaleList from './component/Sales/Sale';
+import CreateSale from './component/Sales/CreateSale';
+import EditSale from './component/Sales/EditSale';
+import Sidebar from './component/Menu/slidebar';
 function App() {
   return (
     <Router>
@@ -33,6 +40,14 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           {/* Redirect to role list if no match */}
+          <Route path="menu" element={<MenuList />} />
+          <Route path="/add-menu" element={<AddMenuForm />} />
+          <Route path="/edit-menu/:menuId" element={<EditMenuForm />} />
+          <Route path="/sidebar" element={<Sidebar />} />
+          {/* Menu routes */}
+          <Route path="/sale" element={<SaleList />} />
+          <Route path="/sale-add" element={<CreateSale />} />
+          <Route path="/sale-edit/:id" element={<EditSale />} />
         </Routes>
       </div>
     </Router>

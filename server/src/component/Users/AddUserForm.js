@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createUser } from '../../api/UsersAPI';
 import { getRoles } from '../../api/RolesAPI';
 import { useNavigate } from 'react-router-dom'
+import Sidebar from '../../component/Menu/slidebar';
 
 const CreateUserForm = () => {
     const navigate = useNavigate();
@@ -64,6 +65,12 @@ const CreateUserForm = () => {
   };
 
   return (
+    <div className="d-flex">
+      {/* Sidebar sẽ nằm bên trái */}
+      <div className="sidebar-container">
+        <Sidebar /> {/* Gọi Sidebar */}
+      </div>
+      <div style={{ marginLeft: '250px', padding: '20px', flexGrow: 1 }}></div>
     <div className="container">
       <h2>Tạo Người Dùng</h2>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -86,7 +93,7 @@ const CreateUserForm = () => {
       </form>
       {message && <p>{message}</p>}
     </div>
+    </div>
   );
 };
-
 export default CreateUserForm;

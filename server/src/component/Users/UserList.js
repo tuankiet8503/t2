@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers } from '../../api/UsersAPI';
+import Sidebar from '../../component/Menu/slidebar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 
@@ -31,43 +32,53 @@ const UserList = () => {
   if (error) return <p className="text-danger text-center">Lỗi: {error}</p>;
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4 text-center">Danh sách người dùng</h2>
-      <Link to="/add-user" className="btn btn-primary mb-3">
-        + Thêm người dùng
-      </Link>
-      {users.length === 0 ? (
-        <p className="text-center">Không có người dùng nào.</p>
-      ) : (
-        <div className="table-responsive">
-          <table className="table table-bordered table-hover">
-            <thead className="table-light">
-              <tr>
-                <th>#</th>
-                <th>Tên người dùng</th>
-                <th>Email</th>
-                <th>Vai trò</th>
-                <th>Thao tác</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user, index) => (
-                <tr key={user._id}>
-                  <td>{index + 1}</td>
-                  <td>{user.username || 'Không có tên'}</td>
-                  <td>{user.email}</td>
-                  <td>{user.role?.roleName || 'Chưa xác định'}</td>
-                  <td>
-                    <Link to={`/edit-user/${user._id}`} className="btn btn-warning btn-sm me-2">
-                      Sửa
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+
+    <div className="d-flex">
+      {/* Sidebar sẽ nằm bên trái */}
+      <div className="sidebar-container">
+        <Sidebar /> {/* Gọi Sidebar */}
+      </div>
+      <div style={{ marginLeft: '250px', padding: '20px', flexGrow: 1 }}>
+        {/* Nội dung của UserList sẽ nằm bên phải */}
+        <div className="container mt-4 flex-grow-1">
+          <h2 className="mb-4 text-center">Danh sách người dùng</h2>
+          <Link to="/add-user" className="btn btn-primary mb-3">
+            + Thêm người dùng
+          </Link>
+          {users.length === 0 ? (
+            <p className="text-center">Không có người dùng nào.</p>
+          ) : (
+            <div className="table-responsive">
+              <table className="table table-bordered table-hover">
+                <thead className="table-light">
+                  <tr>
+                    <th>#</th>
+                    <th>Tên người dùng</th>
+                    <th>Email</th>
+                    <th>Vai trò</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map((user, index) => (
+                    <tr key={user._id}>
+                      <td>{index + 1}</td>
+                      <td>{user.username || 'Không có tên'}</td>
+                      <td>{user.email}</td>
+                      <td>{user.role?.roleName || 'Chưa xác định'}</td>
+                      <td>
+                        <Link to={`/edit-user/${user._id}`} className="btn btn-warning btn-sm me-2">
+                          Sửa
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

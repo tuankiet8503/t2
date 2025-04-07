@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { getCategories } from '../../api/CategoriesAPI';
+import { getMenus } from '../../api/MenuAPI';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const CategoryList = () => {
-    const [Categories, setCategories] = useState([]);
+const MenuList = () => {
+    const [Menus, setMenus] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchCategories = async () => {
+        const fetchMenus = async () => {
             try {
-                const response = await getCategories();
+                const response = await getMenus();
                 console.log('Dữ liệu trả về:', response);
-                setCategories(response);
+                setMenus(response.data);
             } catch (err) {
                 setError('Không thể tải danh sách thể loại. Vui lòng thử lại sau.');
                 console.error('Lỗi khi lấy danh sách thể loại:', err);
@@ -22,13 +22,13 @@ const CategoryList = () => {
             }
         };
 
-        fetchCategories();
+        fetchMenus();
     }, []);
 
     if (loading) {
         return (
             <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
-                <div className="spinner-border text-primary" style={{ width: '3rem', height: '3rem' }} category="status">
+                <div className="spinner-border text-primary" style={{ width: '3rem', height: '3rem' }} menu="status">
                     <span className="visually-hidden">Đang tải...</span>
                 </div>
             </div>
@@ -48,19 +48,19 @@ const CategoryList = () => {
             <div className="card shadow-sm">
                 <div className="card-header bg-white border-bottom-0">
                     <div className="d-flex justify-content-between align-items-center">
-                        <h2 className="mb-0">Danh sách thể loại</h2>
-                        <Link to="/add-category" className="btn btn-primary">
+                        <h2 className="mb-0">Danh sách menu</h2>
+                        <Link to="/add-menu" className="btn btn-primary">
                             <i className="bi bi-plus-circle me-2"></i>
-                            Thêm thể loại
+                            Thêm menu
                         </Link>
                     </div>
                 </div>
 
                 <div className="card-body">
-                    {Categories.length === 0 ? (
+                    {Menus.length === 0 ? (
                         <div className="text-center py-5">
                             <i className="bi bi-folder-x text-muted" style={{ fontSize: '3rem' }}></i>
-                            <p className="mt-3 text-muted">Không có thể loại nào được tìm thấy</p>
+                            <p className="mt-3 text-muted">Không có menu nào được tìm thấy</p>
                         </div>
                     ) : (
                         <div className="table-responsive">
@@ -68,26 +68,30 @@ const CategoryList = () => {
                                 <thead className="table-light">
                                     <tr>
                                         <th width="5%">#</th>
-                                        <th width="25%">Tên thể loại</th>
+                                        <th width="25%">Tên menu</th>
                                         <th width="50%">Mô tả</th>
+                                        <th width="50%">Thuộc</th>
                                         <th width="20%" className="text-end">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {Categories.map((category, index) => {
-                                        console.log('Category:', category);  // Kiểm tra dữ liệu category
+                                    {Menus.map((menu, index) => {
+                                        console.log('Menu:', menu);
                                         return (
-                                            <tr key={category._id || index}>
+                                            <tr key={menu._id || index}>
                                                 <td>{index + 1}</td>
                                                 <td>
-                                                    <strong>{category.categoryName}</strong>
+                                                    <strong>{menu.text}</strong>
                                                 </td>
                                                 <td>
-                                                    <p className="text-muted mb-0">{category.description || 'Không có mô tả'}</p>
+                                                    <p className="text-muted mb-0">{menu.url || 'Không có mô tả'}</p>
+                                                </td>
+                                                <td>
+                                                <strong>{menu.parent}</strong>
                                                 </td>
                                                 <td className="text-end">
                                                     <div className="d-flex justify-content-end gap-2">
-                                                        <Link to={`/edit-category/${category._id}`} className="btn btn-sm btn-outline-primary">
+                                                        <Link to={`/edit-menu/${menu._id}`} className="btn btn-sm btn-outline-primary">
                                                             <i className="bi bi-pencil-square me-1"></i>
                                                             Sửa
                                                         </Link>
@@ -111,4 +115,4 @@ const CategoryList = () => {
     );
 };
 
-export default CategoryList;
+export default MenuList;
