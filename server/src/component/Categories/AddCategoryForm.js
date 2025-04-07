@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createCategory } from '../../api/CategoriesAPI'; // Giả sử hàm createCategory nằm trong file CategoryAPI.js
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Sidebar from '../../component/Menu/slidebar';
 const CreateCategory = () => {
   const [categoryName, setCategoryName] = useState('');
   const [description, setDescription] = useState('');
@@ -48,6 +48,11 @@ const CreateCategory = () => {
   };
 
   return (
+    <div className="d-flex">
+    <div className="sidebar-container">
+      <Sidebar /> {/* Gọi Sidebar */}
+    </div>
+    <div style={{ marginLeft: '250px', padding: '20px', flexGrow: 1 }}></div>
     <div className="container mt-4">
       <h2 className="text-center mb-4">Tạo thể loại mới</h2>
 
@@ -81,6 +86,7 @@ const CreateCategory = () => {
           {loading ? 'Đang tạo...' : 'Tạo thể loại'}
         </button>
       </form>
+    </div>
     </div>
   );
 };

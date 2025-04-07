@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createSale } from '../../api/SaleAPI';
 import { useNavigate } from 'react-router-dom';
-
+import Sidebar from '../../component/Menu/slidebar';
 const AddSale = () => {
   const [saleName, setSaleName] = useState('');
   const [discount, setDiscount] = useState('');
@@ -23,6 +23,11 @@ const AddSale = () => {
   };
 
   return (
+    <div className="d-flex">
+    <div className="sidebar-container">
+      <Sidebar /> {/* Gọi Sidebar */}
+    </div>
+    <div style={{ marginLeft: '250px', padding: '20px', flexGrow: 1 }}>
     <div className="container py-4">
       <div className="card shadow-sm">
         <div className="card-header">
@@ -79,6 +84,8 @@ const AddSale = () => {
           </form>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

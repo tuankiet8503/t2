@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createRole } from '../../api/RolesAPI'; // Hàm gửi request tới API của bạn
-
+import Sidebar from '../../component/Menu/slidebar';
 const AddRoleForm = () => {
   const [roleName, setRoleName] = useState('');
   const [description, setDescription] = useState('');
@@ -38,6 +38,11 @@ const AddRoleForm = () => {
   };
 
   return (
+    <div className="d-flex">
+    <div className="sidebar-container">
+      <Sidebar /> {/* Gọi Sidebar */}
+    </div>
+    <div style={{ marginLeft: '250px', padding: '20px', flexGrow: 1 }}></div>
     <div className="container mt-4">
       <h2 className="text-center mb-4">Thêm quyền mới</h2>
 
@@ -70,6 +75,7 @@ const AddRoleForm = () => {
           {loading ? 'Đang thêm...' : 'Thêm quyền'}
         </button>
       </form>
+    </div>
     </div>
   );
 };

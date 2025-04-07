@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getRoles } from '../../api/RolesAPI';
 import { Link } from 'react-router-dom'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Sidebar from '../../component/Menu/slidebar';
 const RoleList = () => {
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,6 +43,11 @@ const RoleList = () => {
   }
 
   return (
+    <div className="d-flex">
+      <div className="sidebar-container">
+        <Sidebar /> {/* Gọi Sidebar */}
+      </div>
+      <div style={{ marginLeft: '250px', padding: '20px', flexGrow: 1 }}></div>
     <div className="container py-4">
       <div className="card shadow-sm">
         <div className="card-header bg-white border-bottom-0">
@@ -108,6 +113,7 @@ const RoleList = () => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };

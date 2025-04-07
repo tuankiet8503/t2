@@ -18,6 +18,10 @@ import SaleList from './component/Sales/Sale';
 import CreateSale from './component/Sales/CreateSale';
 import EditSale from './component/Sales/EditSale';
 import Sidebar from './component/Menu/slidebar';
+import ProductList from './component/Products/ProductList';
+import ProductDetail from './component/Products/ProductDetail';
+import AddProduct from './component/Products/AddProduct';
+import CartItem from './component/CartItems/CartItem';
 function App() {
   return (
     <Router>
@@ -48,6 +52,13 @@ function App() {
           <Route path="/sale" element={<SaleList />} />
           <Route path="/sale-add" element={<CreateSale />} />
           <Route path="/sale-edit/:id" element={<EditSale />} />
+          {/* Product routes */} 
+          <Route path="/product-list" element={<ProductList />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/add-product" element={<AddProduct />} />
+
+          {/* Cart routes */}
+          <Route path="/cart" element={<CartItem />} />
         </Routes>
       </div>
     </Router>

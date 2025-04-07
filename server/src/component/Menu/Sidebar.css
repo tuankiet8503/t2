@@ -37,10 +37,12 @@
   display: block; /* Hiển thị menu con khi được mở */
 }
 
-.sidebar li > a::after {
+/* Chỉ thêm mũi tên ▼ nếu có children */
+.sidebar li.has-children > a::after {
   content: ' ▼';
 }
 
-.sidebar li.open > a::after {
+/* Khi mở submenu, đổi mũi tên thành ▲ */
+.sidebar li.has-children.open > a::after {
   content: ' ▲';
 }

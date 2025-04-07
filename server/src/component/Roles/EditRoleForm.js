@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getRoleById, updateRole } from '../../api/RolesAPI';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Sidebar from '../../component/Menu/slidebar';
 import { Alert, Spinner, Card, Form, Button, Container, Row, Col } from 'react-bootstrap';
 
 const EditRoleForm = () => {
@@ -70,6 +71,11 @@ const EditRoleForm = () => {
   }
 
   return (
+    <div className="d-flex">
+      <div className="sidebar-container">
+        <Sidebar /> {/* Gọi Sidebar */}
+      </div>
+      <div style={{ marginLeft: '250px', padding: '20px', flexGrow: 1 }}></div>
     <Container className="py-5">
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
@@ -151,6 +157,7 @@ const EditRoleForm = () => {
         </Col>
       </Row>
     </Container>
+    </div>
   );
 };
 

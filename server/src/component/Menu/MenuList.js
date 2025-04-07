@@ -69,7 +69,7 @@ const MenuList = () => {
                                     <tr>
                                         <th width="5%">#</th>
                                         <th width="25%">Tên menu</th>
-                                        <th width="50%">Mô tả</th>
+                                        <th width="50%">Đường dẫn</th>
                                         <th width="50%">Thuộc</th>
                                         <th width="20%" className="text-end">Hành động</th>
                                     </tr>
@@ -84,7 +84,7 @@ const MenuList = () => {
                                                     <strong>{menu.text}</strong>
                                                 </td>
                                                 <td>
-                                                    <p className="text-muted mb-0">{menu.url || 'Không có mô tả'}</p>
+                                                    <p className="text-muted mb-0">{menu.url || 'Không có'}</p>
                                                 </td>
                                                 <td>
                                                 <strong>{menu.parent}</strong>

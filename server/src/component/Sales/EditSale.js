@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getSaleById, updateSale } from '../../api/SaleAPI'; // Đảm bảo có hàm updateSale
-
+import Sidebar from '../../component/Menu/slidebar';
 const EditSale = () => {
   const { id } = useParams(); // Lấy ID từ URL
   const [sale, setSale] = useState({ saleName: '', discount: '', startDate: '', endDate: '' });
@@ -32,6 +32,11 @@ const EditSale = () => {
   };
 
   return (
+    <div className="d-flex">
+    <div className="sidebar-container">
+      <Sidebar /> {/* Gọi Sidebar */}
+    </div>
+    <div style={{ marginLeft: '250px', padding: '20px', flexGrow: 1 }}>
     <div className="container py-4">
       <div className="card shadow-sm">
         <div className="card-header">
@@ -88,6 +93,8 @@ const EditSale = () => {
           </form>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

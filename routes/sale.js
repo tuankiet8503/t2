@@ -17,14 +17,27 @@ router.get('/:id', async function(req, res, next) {
     })
   }
 });
-
+router.get('/', async function(req, res, next) {
+  try {
+    let sale = await saleSchema.find();
+    res.status(200).send({
+      success:true,
+      data:sale
+    });
+  } catch (error) {
+    res.status(404).send({
+      success:fail,
+      message:error.message
+    })
+  }
+});
 router.post('/saleadd', async function(req, res, next) {
   try {
     let body = req.body;
     console.log(body);
 
     // Tạo mới một sale
-    let newSale = new Sale({
+    let newSale = new saleSchema({
       saleName: body.saleName,
       discount: body.discount,
       startDate: body.startDate,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getCategoryById, updateCategory } from '../../api/CategoriesAPI'; // cần định nghĩa các API này
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Sidebar from '../../component/Menu/slidebar';
 const UpdateCategory = () => {
   const [categoryName, setCategoryName] = useState('');
   const [description, setDescription] = useState('');
@@ -64,6 +64,11 @@ const UpdateCategory = () => {
   };
 
   return (
+    <div className="d-flex">
+    <div className="sidebar-container">
+      <Sidebar /> {/* Gọi Sidebar */}
+    </div>
+    <div style={{ marginLeft: '250px', padding: '20px', flexGrow: 1 }}></div>
     <div className="container mt-4">
       <h2 className="text-center mb-4">Cập nhật thể loại</h2>
 
@@ -97,6 +102,7 @@ const UpdateCategory = () => {
           {loading ? 'Đang cập nhật...' : 'Cập nhật thể loại'}
         </button>
       </form>
+    </div>
     </div>
   );
 };

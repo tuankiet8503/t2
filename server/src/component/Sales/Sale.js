@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getSales } from '../../api/SaleAPI';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Sidebar from '../../component/Menu/slidebar';
 const SaleList = () => {
   const [sales, setSales] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -44,6 +44,11 @@ const SaleList = () => {
   }
 
   return (
+    <div className="d-flex">
+    <div className="sidebar-container">
+      <Sidebar /> {/* Gọi Sidebar */}
+    </div>
+    <div style={{ marginLeft: '250px', padding: '20px', flexGrow: 1 }}>
     <div className="container py-4">
       <div className="card shadow-sm">
         <div className="card-header bg-white border-bottom-0">
@@ -103,6 +108,8 @@ const SaleList = () => {
           )}
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 };
