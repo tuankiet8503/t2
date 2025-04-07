@@ -23,7 +23,6 @@ export const createCategory = async (newCategory) => {
     if (!token) {
       throw new Error('Token không tồn tại, vui lòng đăng nhập lại');
     }
-
     // Gửi yêu cầu API với token trong header Authorization
     const response = await axios.post(`${API_URL}/categories`, newCategory, {
       headers: {
@@ -40,5 +39,35 @@ export const createCategory = async (newCategory) => {
   } catch (error) {
     console.error('Lỗi khi tạo thể loại:', error);
     throw error;
+  }
+};
+export const getCategoryById = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/categories/${id}`);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error('Lỗi khi lấy thông tin thể loại:', error);
+    return {
+      success: false,
+      message: error.response?.data?.message || 'Không thể lấy thông tin thể loại'
+    };
+  }
+};
+export const updateCategory = async (id, roleData) => {
+  try {
+    const response = await axios.put(`${API_URL}/categories/${id}`, roleData);
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error) {
+    console.error('Lỗi khi cập nhật thể loại:', error);
+    return {
+      success: false,
+      message: error.response?.data?.message || 'Đã xảy ra lỗi khi cập nhật thể loại'
+    };
   }
 };

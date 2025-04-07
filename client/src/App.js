@@ -2,7 +2,9 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom'; // Chỉ import Routes và Route
 import ProductList from './components/ProductList';
 import ProductDetail from './components/ProductDetail';
-
+import CartItem from './components/CartItem';
+import LoginForm from './components/loginForm'; 
+import RegisterForm from './components/registerForm';
 function App() {
   return (
     <div className="App">
@@ -15,6 +17,9 @@ function App() {
           <Route path="/" element={<ProductList />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<CartItem />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
         </Routes>
       </main>
       

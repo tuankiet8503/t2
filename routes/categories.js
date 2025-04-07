@@ -58,7 +58,7 @@ router.post('/',
 router.put('/:id', async function(req, res, next) {
   try {
     let body = req.body;
-    let category = await newCategory.findByIdAndUpdate(req.params.id,
+    let category = await categorySchema.findByIdAndUpdate(req.params.id,
       body,{new:true});
     res.status(200).send({
       success:true,

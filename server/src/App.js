@@ -6,10 +6,11 @@ import EditRoleForm from './component/Roles/EditRoleForm';
 import UserList from './component/Users/UserList';
 import AddUserForm from './component/Users/AddUserForm';
 import EditUserForm from './component/Users/EditUserForm';
-import CategoryList from './component/Categories/CategoryList'; // Thêm dòng này
+import CategoryList from './component/Categories/CategoryList';
 import LoginForm from './component/Users/loginForm'; 
 import RegisterForm from './component/Users/registerForm';
-import AddCategoryForm from './component/Categories/AddCategoryForm'; // Thêm dòng này
+import AddCategoryForm from './component/Categories/AddCategoryForm';
+import EditCategoryForm from './component/Categories/UpdateCategoryForm'; 
 function App() {
   return (
     <Router>
@@ -27,6 +28,7 @@ function App() {
            {/* Category routes */}
           <Route path="/categories" element={<CategoryList />} />
           <Route path="/add-category" element={<AddCategoryForm />} />
+          <Route path="/edit-category/:id" element={<EditCategoryForm />} />
           {/* Auth routes */}
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
